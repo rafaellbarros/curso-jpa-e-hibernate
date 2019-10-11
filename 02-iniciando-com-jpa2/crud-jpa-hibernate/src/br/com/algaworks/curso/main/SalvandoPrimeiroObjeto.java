@@ -15,7 +15,7 @@ public class SalvandoPrimeiroObjeto {
 
 		em.getTransaction().begin();
 
-		em.persist(new Cliente("Pedro Bial", 40, "M", "Jornalista"));
+		em.persist(new Cliente("Maria Rita", 20, "F", "Médica"));
 
 		em.getTransaction().commit();
 
