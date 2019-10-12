@@ -42,6 +42,9 @@ public class Transferencia {
 		System.out.println("Saldo da conta1: " + conta1.getSaldo() 
 			+ ". Saldo conta2: " + conta2.getSaldo());
 		
+		em.close();
+		em = emf.createEntityManager();
+		
 		System.out.println("\n-------------------------\n");
 		System.out.println("Digite o valor a retirar da conta 1 e depositar na conta 2: ");
 		Double valorTransferencia = entrada.nextDouble();
@@ -49,6 +52,9 @@ public class Transferencia {
 		em.getTransaction().begin();
 		conta1.setSaldo(conta1.getSaldo() - valorTransferencia);
 		conta2.setSaldo(conta2.getSaldo() + valorTransferencia);
+		
+		em.merge(conta1);
+		em.merge(conta2);
 		
 		if (conta1.getSaldo() > 0) {
 			em.getTransaction().commit();
