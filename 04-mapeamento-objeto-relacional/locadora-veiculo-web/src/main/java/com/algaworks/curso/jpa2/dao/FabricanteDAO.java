@@ -21,7 +21,7 @@ public class FabricanteDAO implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<Fabricante> buscarTodos() {
-		return em.createQuery("from fabricante").getResultList();
+		return em.createQuery("from Fabricante").getResultList();
 	}
 
 	@Transactional
