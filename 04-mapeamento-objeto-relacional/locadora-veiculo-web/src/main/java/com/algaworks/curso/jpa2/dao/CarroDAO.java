@@ -13,8 +13,8 @@ import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
 public class CarroDAO implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 5804238669540543682L;
+
 	@Inject
 	private EntityManager em;
 	
@@ -26,7 +26,6 @@ public class CarroDAO implements Serializable {
 		em.merge(carro);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Carro> buscarTodos() {
 		return em.createQuery("from Carro").getResultList();
 	}

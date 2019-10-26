@@ -1,5 +1,8 @@
 package com.algaworks.curso.jpa2.controller;
 
+import static com.algaworks.curso.jpa2.util.jsf.FacesUtil.addErrorMessage;
+import static com.algaworks.curso.jpa2.util.jsf.FacesUtil.addSuccessMessage;
+
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -10,8 +13,6 @@ import javax.inject.Named;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.service.CadastroFabricanteService;
 import com.algaworks.curso.jpa2.service.exception.NegocioException;
-import static com.algaworks.curso.jpa2.util.jsf.FacesUtil.addErrorMessage;
-import static com.algaworks.curso.jpa2.util.jsf.FacesUtil.addSuccessMessage;
 
 import lombok.Getter;
 import lombok.Setter;
