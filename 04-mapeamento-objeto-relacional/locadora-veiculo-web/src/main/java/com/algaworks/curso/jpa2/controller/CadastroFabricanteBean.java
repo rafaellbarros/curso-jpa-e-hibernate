@@ -19,14 +19,16 @@ import lombok.Setter;
 @Named
 @ViewScoped
 public class CadastroFabricanteBean implements Serializable {
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private CadastroFabricanteService cadastroFabricanteService;
-	
-	@Getter @Setter
+
+	@Getter
+	@Setter
 	private Fabricante fabricante;
-	
-	
+
 	public void salvar() {
 		try {
 			this.cadastroFabricanteService.salvar(fabricante);
@@ -36,12 +38,12 @@ public class CadastroFabricanteBean implements Serializable {
 			addErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		this.limpar();
 	}
-	
+
 	public void limpar() {
 		this.fabricante = new Fabricante();
 	}

@@ -19,7 +19,6 @@ import com.algaworks.curso.jpa2.service.exception.NegocioException;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Named
 @ViewScoped
 public class PesquisaFabricanteBean implements Serializable {
@@ -28,27 +27,25 @@ public class PesquisaFabricanteBean implements Serializable {
 
 	@Inject
 	FabricanteDAO fabricanteDAO;
-	
+
 	@Getter
 	private List<Fabricante> fabricantes = new ArrayList<>();
-	
-	@Getter @Setter
+
+	@Getter
+	@Setter
 	private Fabricante fabricanteSelecionado;
-	
 
 	public void excluir() {
-		
+
 		try {
 			fabricanteDAO.excluir(fabricanteSelecionado);
 			this.fabricantes.remove(fabricanteSelecionado);
 			addSuccessMessage("Fabricante " + fabricanteSelecionado.getNome() + " excluído com sucesso.");
 		} catch (NegocioException e) {
 			addErrorMessage(e.getMessage());
-		} 
+		}
 	}
 
-
-	
 	@PostConstruct
 	public void inicializar() {
 		fabricantes = fabricanteDAO.buscarTodos();

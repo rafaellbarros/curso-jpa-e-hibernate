@@ -17,7 +17,8 @@ import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import com.algaworks.curso.jpa2.service.CadastroModeloCarroService;
 import com.algaworks.curso.jpa2.service.exception.NegocioException;
 
-
+import lombok.Getter;
+import lombok.Setter;
 
 @Named
 @ViewScoped
@@ -25,16 +26,19 @@ public class CadastroModeloCarroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Getter
+	@Setter
 	private ModeloCarro modeloCarro;
-	
+
+	@Getter
 	private List<Fabricante> fabricantes;
-	
+
 	@Inject
 	private CadastroModeloCarroService cadastroModeloCarroService;
-	
+
 	@Inject
 	private FabricanteDAO fabricanteDAO;
-	
+
 	public void salvar() {
 		try {
 			this.cadastroModeloCarroService.salvar(modeloCarro);
@@ -42,29 +46,18 @@ public class CadastroModeloCarroBean implements Serializable {
 		} catch (NegocioException e) {
 			addErrorMessage(e.getMessage());
 		}
-		
+
 		this.limpar();
 	}
-	
+
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
 		this.fabricantes = fabricanteDAO.buscarTodos();
 	}
-	
+
 	public void limpar() {
 		this.modeloCarro = new ModeloCarro();
 	}
 
-	public ModeloCarro getModeloCarro() {
-		return modeloCarro;
-	}
-	public void setModeloCarro(ModeloCarro modeloCarro) {
-		this.modeloCarro = modeloCarro;
-	}
-
-	public List<Fabricante> getFabricantes() {
-		return fabricantes;
-	}
-	
 }
