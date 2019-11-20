@@ -22,8 +22,8 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "pessoa")
 @EqualsAndHashCode(of = {"codigo"})
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TIPO_PESSOA", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TIPO_PESSOA", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Pessoa {
 
 	@Id
