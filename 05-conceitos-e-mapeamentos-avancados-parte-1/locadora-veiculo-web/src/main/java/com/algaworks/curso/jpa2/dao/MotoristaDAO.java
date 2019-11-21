@@ -26,7 +26,6 @@ public class MotoristaDAO implements Serializable {
 		em.merge(motorista);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Motorista> buscarTodos() {
 		return em.createQuery("from Motorista").getResultList();
 	}
