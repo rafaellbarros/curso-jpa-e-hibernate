@@ -40,9 +40,12 @@ public class Aluguel {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEntrega;
-	
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataDevolucao;
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_motorista")
+	private Motorista motorista;
 
 }
