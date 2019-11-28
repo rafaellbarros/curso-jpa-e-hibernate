@@ -25,6 +25,9 @@
 		    		<p:column headerText="Código" style="text-align: center; width: 100px">
 		    			<h:outputText value="#{carro.codigo}" />
 		    		</p:column>
+					<p:column headerText="Modelo">
+						<h:outputText value="#{carro.modelo.descricao}" />
+					</p:column>
 		    		<p:column headerText="Placa">
 		    			<h:outputText value="#{carro.placa}" />
 		    		</p:column>
@@ -34,10 +37,12 @@
 		    		<p:column headerText="Valor diária">
 		    			<h:outputText value="#{carro.valorDiaria}" />
 		    		</p:column>
-		    		<p:column headerText="Acessórios" style="width: 100px; text-align: center">
-		    			<p:commandButton icon="ui-icon-extlink" title="Acessórios" >
-		    			</p:commandButton>
-		    		</p:column>
+					<p:column headerText="Acessórios" style="width: 100px; text-align: center">
+						<p:commandButton icon="ui-icon-extlink" title="Acessórios" action="#{pesquisaCarroBean.buscarCarroComAcessorios}"
+										 process="@this" oncomplete="mostraAcessorios.show()" update=":frmPesquisa:mostraAcessoriosDialog">
+							<f:setPropertyActionListener target="#{pesquisaCarroBean.carroSelecionado}" value="#{carro}" />
+						</p:commandButton>
+					</p:column>
 		    		<p:column style="width: 100px; text-align: center">
 		    			<p:button outcome="CadastroCarro" icon="ui-icon-pencil" title="Editar">
 		    				<f:param name="carro" value="#{carro.codigo}"/>
@@ -56,6 +61,14 @@
 	        	<p:commandButton value="Sim" update=":frmPesquisa:carrosTable"
 	        			onclick="confirmacaoExclusao.hide()" action="#{pesquisaCarroBean.excluir}" />
 	    	</p:confirmDialog>
+
+			<p:dialog id="mostraAcessoriosDialog" header="Acessórios" widgetVar="mostraAcessorios" modal="true">
+				<p:dataList value="#{pesquisaCarroBean.carroSelecionado.acessorios}" var="acessorio" itemType="disc"
+							rendered="#{not empty pesquisaCarroBean.carroSelecionado.acessorios}">
+					#{acessorio.descricao}
+				</p:dataList>
+				<h:outputText value="Nenhum acessório" rendered="#{empty pesquisaCarroBean.carroSelecionado.acessorios}"/>
+			</p:dialog>
 	    	
 	    </h:form>
     </ui:define>

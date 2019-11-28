@@ -40,5 +40,12 @@ public class CarroDAO implements Serializable {
 			throw new NegocioException("Carro não pode ser excluído.");
 		}
 	}
-	
+
+
+	public Carro buscarCarroComAcessorios(Long codigo) {
+		String sql = "select c from Carro c JOIN c.acessorios a where c.codigo = ?";
+		return (Carro) em.createQuery(sql).setParameter(1, codigo)
+							.getSingleResult();
+	}
+
 }
