@@ -5,12 +5,21 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.algaworks.curso.jpa2.modelo.constants.CarroConstants;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 @Entity
 @Data
+@NamedQueries({
+		@NamedQuery(
+				name = CarroConstants.QUERYNAME.BUSCAR_TODOS,
+				query = CarroConstants.QUERIES.BUSCAR_TODOS),
+		@NamedQuery(
+				name = CarroConstants.QUERYNAME.BUSCAR_CARRO_COM_ACESSORIOS,
+				query = CarroConstants.QUERIES.BUSCAR_CARRO_COM_ACESSORIOS
+		)
+})
 @Table(name="carro")
 @EqualsAndHashCode(of = {"codigo"})
 public class Carro {

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelo.constants.CarroConstants;
 import com.algaworks.curso.jpa2.service.exception.NegocioException;
 import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
@@ -27,7 +28,7 @@ public class CarroDAO implements Serializable {
 	}
 
 	public List<Carro> buscarTodos() {
-		return em.createQuery("from Carro").getResultList();
+		return em.createNamedQuery(CarroConstants.QUERYNAME.BUSCAR_TODOS).getResultList();
 	}
 	
 	@Transactional
@@ -43,8 +44,8 @@ public class CarroDAO implements Serializable {
 
 
 	public Carro buscarCarroComAcessorios(Long codigo) {
-		String sql = "select c from Carro c JOIN c.acessorios a where c.codigo = ?";
-		return (Carro) em.createQuery(sql).setParameter(1, codigo)
+		return em.createNamedQuery(CarroConstants.QUERYNAME.BUSCAR_CARRO_COM_ACESSORIOS, Carro.class)
+							.setParameter("codigo", codigo)
 							.getSingleResult();
 	}
 
