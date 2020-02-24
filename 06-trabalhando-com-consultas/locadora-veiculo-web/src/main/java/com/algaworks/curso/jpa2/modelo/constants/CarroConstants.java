@@ -14,6 +14,7 @@ public class CarroConstants {
         public static final String BUSCAR_CARRO_COM_ACESSORIOS = "SELECT c "
                                                                 + " FROM Carro c JOIN c.acessorios a "
                                                                 + " WHERE c.codigo = :codigo";
+        public static final String ENCONTRAR_QTD_DE_CARROS = "select count(c) from Carro c";
         private QUERIES() {}
     }
 

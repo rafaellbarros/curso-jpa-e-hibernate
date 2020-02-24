@@ -49,4 +49,14 @@ public class CarroDAO implements Serializable {
 							.getSingleResult();
 	}
 
+	public List<Carro> buscarComPaginacao(int first, int pageSize) {
+		return em.createNamedQuery(CarroConstants.QUERYNAME.BUSCAR_TODOS)
+						.setFirstResult(first)
+						.setMaxResults(pageSize)
+						.getResultList();
+	}
+
+	public Long encontrarQuantidadeDeCarros() {
+		return em.createQuery(CarroConstants.QUERIES.ENCONTRAR_QTD_DE_CARROS, Long.class).getSingleResult();
+	}
 }
