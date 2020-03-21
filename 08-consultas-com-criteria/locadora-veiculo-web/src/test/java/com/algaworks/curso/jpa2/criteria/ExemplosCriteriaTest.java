@@ -7,6 +7,7 @@ import org.junit.*;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
 import java.util.List;
@@ -138,5 +139,34 @@ public class ExemplosCriteriaTest {
 
         Assert.assertEquals(placaExpected, precoCarro.getPlaca());
         Assert.assertEquals(valorDiariaExpected, precoCarro.getValor());
+    }
+    
+    @Test
+    public void exemploFuncao() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+
+        Root<Carro> carro = criteriaQuery.from(Carro.class);
+        Predicate predicate = builder.equal(builder.upper(carro.<String>get("cor")),
+                "prata".toUpperCase());
+
+        criteriaQuery.select(carro);
+        criteriaQuery.where(predicate);
+
+        TypedQuery<Carro> query = em.createQuery(criteriaQuery);
+        List<Carro> carros = query.getResultList();
+
+        for (Carro c : carros) {
+            System.out.println(c.getPlaca() + " - " + c.getCor());
+        }
+
+        String placa = "BBB-2222";
+        String cor = "Prata";
+
+        Carro c = carros.stream().findFirst().get();
+
+        Assert.assertEquals(placa, c.getPlaca());
+        Assert.assertEquals(cor, c.getCor());
+
     }
 }
