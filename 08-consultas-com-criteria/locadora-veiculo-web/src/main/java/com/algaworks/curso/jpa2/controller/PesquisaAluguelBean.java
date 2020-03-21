@@ -52,7 +52,7 @@ public class PesquisaAluguelBean implements Serializable {
     }
 
     public void pesquisar() throws Exception {
-        throw new Exception("Implementar");
+        this.alugueis = aluguelDAO.buscarPorDataDeEntregaEModeloCarro(this.aluguel.getDataEntrega(), this.carro.getModelo());
     }
 
 }
