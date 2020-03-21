@@ -2,6 +2,7 @@ package com.algaworks.curso.jpa2.criteria;
 
 import com.algaworks.curso.jpa2.modelo.Aluguel;
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import org.junit.*;
 
 import javax.persistence.*;
@@ -183,6 +184,29 @@ public class ExemplosCriteriaTest {
 
         for (Carro c : carros) {
             System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
+        }
+
+    }
+
+    @Test
+    public void exemploJoinEFecth() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+
+        Root<Carro> carro = criteriaQuery.from(Carro.class);
+        // Join<Carro, ModeloCarro> modelo = (Join) carro.fetch("modelo");
+        Join<Carro, ModeloCarro> modelo = (Join) carro.join("modelo");
+
+        criteriaQuery.select(carro);
+        criteriaQuery.where(builder.equal(modelo.get("descricao") ,"Fit"));
+
+        TypedQuery<Carro> query = em.createQuery(criteriaQuery);
+        List<Carro> carros = query.getResultList();
+
+        for (Carro c : carros) {
+            // System.out.println(c.getPlaca() + " - " + c.getModelo().getDescricao());
+            System.out.println(c.getPlaca());
+
         }
 
     }

@@ -18,7 +18,7 @@ public class ModeloCarro {
 	private Long codigo;
 	private String descricao;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="codigo_fabricante")
 	private Fabricante fabricante;
 
