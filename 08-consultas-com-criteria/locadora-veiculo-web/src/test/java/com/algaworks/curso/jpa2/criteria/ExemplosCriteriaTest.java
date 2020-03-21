@@ -210,4 +210,41 @@ public class ExemplosCriteriaTest {
         }
 
     }
+
+    @Test
+    public void mediaDasDiariasDosCarros() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Double> criteriaQuery = builder.createQuery(Double.class);
+
+        Root<Carro> carro = criteriaQuery.from(Carro.class);
+        criteriaQuery.select(builder.avg(carro.<Double>get("valorDiaria")));
+
+        TypedQuery<Double> query = em.createQuery(criteriaQuery);
+        Double total = query.getSingleResult();
+
+        System.out.println("Média da diária: " + total);
+    }
+
+    @Test
+    public void carrosComValoresAcimaDaMedia() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+        Subquery<Double> subquery = criteriaQuery.subquery(Double.class);
+
+        Root<Carro> carro = criteriaQuery.from(Carro.class);
+        Root<Carro> carroSub = subquery.from(Carro.class);
+
+        subquery.select(builder.avg(carroSub.<Double>get("valorDiaria")));
+
+        criteriaQuery.select(carro);
+        criteriaQuery.where(builder.greaterThanOrEqualTo(carro.<Double>get("valorDiaria"), subquery));
+
+        TypedQuery<Carro> query = em.createQuery(criteriaQuery);
+        List<Carro> carros = query.getResultList();
+
+        for (Carro c : carros) {
+            System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
+        }
+
+    }
 }
