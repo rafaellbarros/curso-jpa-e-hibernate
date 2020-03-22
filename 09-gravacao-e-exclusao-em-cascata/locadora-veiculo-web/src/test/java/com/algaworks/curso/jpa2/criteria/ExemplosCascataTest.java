@@ -70,4 +70,15 @@ public class ExemplosCascataTest {
      */
 
     }
+
+    @Test
+    public void exclusaoEmCascata() {
+        Carro carro = em.find(Carro.class, 1L);
+
+        /*
+        em.getTransaction().begin();
+        em.remove(carro);
+        em.getTransaction().commit();
+         */
+    }
 }
