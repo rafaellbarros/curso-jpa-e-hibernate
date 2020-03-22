@@ -81,4 +81,14 @@ public class ExemplosCascataTest {
         em.getTransaction().commit();
          */
     }
+    
+    @Test
+    public void exclusaoDeObjetosOrfaos() {
+        Carro carro = em.find(Carro.class, 4L);
+        /*
+        em.getTransaction().begin();
+        carro.getAlugueis().remove(0);
+        em.getTransaction().commit();
+         */
+    }
 }
