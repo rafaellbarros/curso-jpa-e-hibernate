@@ -34,7 +34,7 @@ public class Carro {
 	@Column(name = "valor_diaria")
 	private BigDecimal valorDiaria;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "codigo_modelo")
 	private ModeloCarro modelo;
 
