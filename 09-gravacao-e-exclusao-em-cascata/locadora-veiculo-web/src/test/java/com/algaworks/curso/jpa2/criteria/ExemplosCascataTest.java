@@ -47,11 +47,11 @@ public class ExemplosCascataTest {
         modelo.setCategoria(Categoria.ESPORTIVO);
         modelo.setDescricao("Ferrari");
         carro.setModelo(modelo);
-
+/*
         em.getTransaction().begin();
         em.persist(carro);
         em.getTransaction().commit();
-
+*/
     }
 
     @Test
@@ -62,10 +62,12 @@ public class ExemplosCascataTest {
 
         List<Acessorio> acessorios = Arrays.asList(new Acessorio("Air Bag"), new Acessorio("Trava Elétrica"));
         carro.setAcessorios(acessorios);
-
+    /*
         em.getTransaction().begin();
         em.persist(carro);
         em.getTransaction().commit();
+
+     */
 
     }
 }

@@ -35,13 +35,18 @@ public class PesquisaCarroBean implements Serializable {
 
 	@Getter @Setter
 	private Carro carroSelecionado;
-	
-	
+
+	@Getter @Setter
+	private Carro carroSelecionadoParaExcluir;
+
+	@Getter @Setter
+	private Carro carroSelecionadoParaAcessorio;
+
 	public void excluir() {
 		try {
-			carroDAO.excluir(carroSelecionado);
-			this.carros.remove(carroSelecionado);
-			FacesUtil.addSuccessMessage("Carro placa " + carroSelecionado.getPlaca() + " excluído com sucesso.");
+			carroDAO.excluir(carroSelecionadoParaExcluir);
+			this.carros.remove(carroSelecionadoParaExcluir);
+			FacesUtil.addSuccessMessage("Carro placa " + carroSelecionadoParaExcluir.getPlaca() + " excluído com sucesso.");
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
@@ -53,7 +58,7 @@ public class PesquisaCarroBean implements Serializable {
 	}
 
 	public void buscarCarroComAcessorios() {
-		carroSelecionado = carroDAO.buscarCarroComAcessorios(carroSelecionado.getCodigo());
+		carroSelecionadoParaAcessorio = carroDAO.buscarCarroComAcessorios(carroSelecionadoParaAcessorio.getCodigo());
 	}
 	
 }
