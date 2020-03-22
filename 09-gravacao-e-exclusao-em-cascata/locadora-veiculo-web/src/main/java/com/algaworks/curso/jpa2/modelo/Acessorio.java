@@ -15,4 +15,10 @@ public class Acessorio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	private String descricao;
+
+	public Acessorio() {}
+
+	public Acessorio(String descricao) {
+		this.descricao = descricao;
+	}
 }

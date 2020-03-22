@@ -1,5 +1,6 @@
 package com.algaworks.curso.jpa2.criteria;
 
+import com.algaworks.curso.jpa2.modelo.Acessorio;
 import com.algaworks.curso.jpa2.modelo.Carro;
 import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import com.algaworks.curso.jpa2.modelo.enums.Categoria;
@@ -12,6 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class ExemplosCascataTest {
 
@@ -44,6 +47,21 @@ public class ExemplosCascataTest {
         modelo.setCategoria(Categoria.ESPORTIVO);
         modelo.setDescricao("Ferrari");
         carro.setModelo(modelo);
+
+        em.getTransaction().begin();
+        em.persist(carro);
+        em.getTransaction().commit();
+
+    }
+
+    @Test
+    public void gravacaoEmCascataCarroEAcessorio() {
+        Carro carro = new Carro();
+        carro.setCor("Preto");
+        carro.setPlaca("AAA-1111");
+
+        List<Acessorio> acessorios = Arrays.asList(new Acessorio("Air Bag"), new Acessorio("Trava Elétrica"));
+        carro.setAcessorios(acessorios);
 
         em.getTransaction().begin();
         em.persist(carro);

@@ -38,7 +38,7 @@ public class Carro {
 	@JoinColumn(name = "codigo_modelo")
 	private ModeloCarro modelo;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
 	private List<Acessorio> acessorios;
 	
