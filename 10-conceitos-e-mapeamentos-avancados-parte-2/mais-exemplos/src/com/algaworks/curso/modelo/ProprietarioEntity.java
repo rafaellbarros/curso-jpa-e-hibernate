@@ -3,6 +3,8 @@ package com.algaworks.curso.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -18,7 +20,7 @@ public class ProprietarioEntity {
 	
 	private Long codigo;
 	private String nome;
-	private List<String> telefones = new ArrayList<>();
+	private List<Telefone> telefones = new ArrayList<>();
 	
 	@Id
 	@GeneratedValue
@@ -41,12 +43,13 @@ public class ProprietarioEntity {
 	@ElementCollection
 	@CollectionTable(name = "proprietario_telefones",
 			joinColumns=@JoinColumn(name="cod_proprietario"))
-	@Column(name="numero_telefone")
-	public List<String> getTelefones() {
+	// @Column(name="numero_telefone")
+	@AttributeOverrides({@AttributeOverride(name = "numero", column = @Column(name = "num_telefone"))})
+	public List<Telefone> getTelefones() {
 		return telefones;
 	}
 	
-	public void setTelefones(List<String> telefones) {
+	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
 	

@@ -16,8 +16,8 @@ public class ExemploTiposBasicos {
 		
 		ProprietarioEntity proprietario = new ProprietarioEntity();
 		proprietario.setNome("João");
-		proprietario.getTelefones().add("(34) 1234-5678");
-		proprietario.getTelefones().add("(11) 9876-5432");
+		// proprietario.getTelefones().add("(34) 1234-5678");
+		// proprietario.getTelefones().add("(11) 9876-5432");
 		
 		em.persist(proprietario);
 		

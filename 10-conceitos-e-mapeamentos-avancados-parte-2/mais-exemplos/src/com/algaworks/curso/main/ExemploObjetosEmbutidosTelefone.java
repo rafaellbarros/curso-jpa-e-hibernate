@@ -1,7 +1,5 @@
 package com.algaworks.curso.main;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -9,22 +7,20 @@ import com.algaworks.curso.modelo.ProprietarioEntity;
 import com.algaworks.curso.modelo.Telefone;
 import com.algaworks.curso.util.jpa.JPAUtil;
 
-public class ConsultaTiposBasicos {
-	
+public class ExemploObjetosEmbutidosTelefone {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = JPAUtil.createEntityManager().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		
-		ProprietarioEntity p = em.find(ProprietarioEntity.class, 1L);
-		System.out.println("Nome: " + p.getNome());
-
-		// List<String> telefones = p.getTelefones();
-		List<Telefone> telefones = p.getTelefones();
+		ProprietarioEntity p = new ProprietarioEntity();
+		p.setNome("Maria");
+		p.getTelefones().add(new Telefone("34", "1234-5678", "104"));
+		p.getTelefones().add(new Telefone("11", "9876-5432", null));
 		
-		for (Telefone telefone : telefones) {
-			System.out.println("Telefone: " + telefone.getNumero());
-		} 
+		em.persist(p);
 		
+		em.getTransaction().commit();
 		em.close();
 	}
 
