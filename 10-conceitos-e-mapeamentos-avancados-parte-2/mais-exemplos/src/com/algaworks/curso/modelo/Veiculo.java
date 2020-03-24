@@ -4,6 +4,7 @@ import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tab_veiculo")
@@ -37,6 +38,12 @@ public class Veiculo {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+	
+	@Transient
+	public String getDescricao() {
+		return "Placa: " + getCodigo().getPlaca() + ". Fabricante: " 
+				+ getFabricante() + ". Modelo: " + getModelo();
 	}
 	
 	@Embedded
