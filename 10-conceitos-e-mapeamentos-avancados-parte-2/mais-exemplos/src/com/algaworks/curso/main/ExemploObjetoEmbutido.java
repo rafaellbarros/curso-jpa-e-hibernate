@@ -3,33 +3,32 @@ package com.algaworks.curso.main;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import com.algaworks.curso.modelo.Proprietario;
 import com.algaworks.curso.modelo.Veiculo;
 import com.algaworks.curso.modelo.VeiculoId;
 import com.algaworks.curso.util.jpa.JPAUtil;
 
-public class ExmploChaveComposta {
-	
+public class ExemploObjetoEmbutido {
 	
 	public static void main(String[] args) {
 		EntityManagerFactory emf = JPAUtil.createEntityManager().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		
 		Veiculo veiculo = new Veiculo();
-		veiculo.setCodigo(new VeiculoId("ABC-1234", "Rio Claro"));
-		veiculo.setFabricante("Chevrolet");
-		veiculo.setModelo("Corsa");
+		veiculo.setCodigo(new VeiculoId("AAA-1111", "Rio de Janeiro"));
+		veiculo.setFabricante("Volks");
+		veiculo.setModelo("Jetta");
 		
-		/*
+		Proprietario proprietario = new Proprietario();
+		proprietario.setNome("João da Silva");
+		proprietario.setTelefone("999998888");
+		proprietario.setEmail("joao@silva.com");
+	
+		veiculo.setProprietario(proprietario);
+		
 		em.getTransaction().begin();
 		em.persist(veiculo);
 		em.getTransaction().commit();
-		*/
-		VeiculoId codigo = new VeiculoId("ABC-1234", "Rio Claro");
-		Veiculo veiculoRetornado = em.find(Veiculo.class, codigo);
-		
-		System.out.println("Veiculo placa: " + veiculoRetornado.getCodigo().getPlaca());
-		System.out.println("Veiculo cidade: " + veiculoRetornado.getCodigo().getCidade());
-		System.out.println("Veiculo fabricante: " + veiculoRetornado.getFabricante());
 		
 		em.close();
 	}

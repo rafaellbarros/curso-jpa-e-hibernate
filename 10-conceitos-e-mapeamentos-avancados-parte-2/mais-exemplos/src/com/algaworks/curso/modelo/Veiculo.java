@@ -1,5 +1,6 @@
 package com.algaworks.curso.modelo;
 
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ public class Veiculo {
 	private VeiculoId  codigo;
 	private String fabricante;
 	private String modelo;
+	private Proprietario proprietario;
 
 	@EmbeddedId
 	public VeiculoId getCodigo() {
@@ -35,6 +37,15 @@ public class Veiculo {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+	
+	@Embedded
+	public Proprietario getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
 	}
 
 	@Override
