@@ -45,5 +45,8 @@ public class Carro {
 	// cascade = CascadeType.PERSIST, orphanRemoval =  true
 	@OneToMany(mappedBy="carro")
 	private List<Aluguel> alugueis;
-	
+
+	@Lob
+	private byte[] foto;
+
 }

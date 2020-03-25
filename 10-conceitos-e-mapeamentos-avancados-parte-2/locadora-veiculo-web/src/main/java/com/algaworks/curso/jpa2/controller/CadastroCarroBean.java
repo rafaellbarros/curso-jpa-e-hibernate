@@ -6,6 +6,7 @@ import static com.algaworks.curso.jpa2.util.jsf.FacesUtil.addSuccessMessage;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
@@ -22,6 +23,7 @@ import com.algaworks.curso.jpa2.service.exception.NegocioException;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.model.UploadedFile;
 
 @Named
 @ViewScoped
@@ -48,6 +50,9 @@ public class CadastroCarroBean implements Serializable {
 	@Inject
 	private ModeloCarroDAO modeloCarroDAO;
 
+	@Getter @Setter
+	private UploadedFile uploadedFile;
+
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
@@ -58,6 +63,9 @@ public class CadastroCarroBean implements Serializable {
 
 	public void salvar() {
 		try {
+			if (Objects.nonNull(this.uploadedFile)) {
+				this.carro.setFoto(this.uploadedFile.getContents());
+			}
 			this.cadastroCarroService.salvar(carro);
 			addSuccessMessage("Carro salvo com sucesso!");
 		} catch (NegocioException e) {
