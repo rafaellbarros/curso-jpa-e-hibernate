@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@Table(name="apolice_seguro")
+@Table(name="apolice_seguro") // schema = "locadora" e catalog = "locadora"
 @EqualsAndHashCode(of = {"codigo"})
 public class ApoliceSeguro {
 	
