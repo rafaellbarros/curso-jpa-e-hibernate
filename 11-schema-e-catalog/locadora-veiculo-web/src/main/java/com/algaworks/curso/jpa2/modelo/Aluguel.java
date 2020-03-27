@@ -31,7 +31,7 @@ public class Aluguel {
 	private ApoliceSeguro apoliceSeguro;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "data_pedido")
+	@Column(name = "data_pedido") // nullable=false, unique=false, insertable=false, updatable=false
 	private Calendar dataPedido;
 	
 	@Temporal(TemporalType.TIMESTAMP)
