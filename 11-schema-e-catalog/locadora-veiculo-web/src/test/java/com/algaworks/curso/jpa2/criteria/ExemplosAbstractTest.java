@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.criteria;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -11,9 +12,10 @@ import javax.persistence.Persistence;
 
 public abstract class ExemplosAbstractTest {
 
+    @Getter
     private static EntityManagerFactory factory;
 
-    @Getter
+    @Getter @Setter
     private EntityManager em;
 
     @BeforeClass
