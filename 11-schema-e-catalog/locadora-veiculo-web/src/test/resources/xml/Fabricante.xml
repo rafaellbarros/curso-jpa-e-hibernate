@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dataset>
-    <fabricante codigo="99" nome="Volks" />
+    <fabricante codigo="1" nome="Chevrolet" />
+    <fabricante codigo="2" nome="Honda" />
+    <fabricante codigo="3" nome="Volks" />
 </dataset>

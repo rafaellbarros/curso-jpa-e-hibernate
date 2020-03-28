@@ -21,7 +21,7 @@ public class FabricanteDAO implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<Fabricante> buscarTodos() {
-		return em.createQuery("from Fabricante").getResultList();
+		return em.createQuery("FROM Fabricante").getResultList();
 	}
 
 	@Transactional
@@ -35,7 +35,7 @@ public class FabricanteDAO implements Serializable {
 		return em.find(Fabricante.class, codigo);
 	}
 
-	public void setEntityManger(EntityManager entityManger) {
-		this.em = entityManger;
+	public void setEntityManger(EntityManager entityManager) {
+		em = entityManager;
 	}
 }

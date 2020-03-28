@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dataset>
-    <carro codigo="99" placa="ZPT-2211" valor_diaria="450.0" />
+    <carro codigo="1" cor="Prata" placa="AAA-1111" valor_diaria="450.0" />
+    <carro codigo="2" cor="Azul" placa="BBB-2222" valor_diaria="500.0" />
+    <carro codigo="3" cor="Preto" placa="CCC-3333" valor_diaria="550.0" />
 </dataset>

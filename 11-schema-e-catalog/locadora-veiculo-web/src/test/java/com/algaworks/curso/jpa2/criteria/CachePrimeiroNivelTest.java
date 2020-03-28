@@ -19,7 +19,7 @@ public class CachePrimeiroNivelTest extends ExemplosAbstractTest  {
         // getEm().close();
         // setEm(getFactory().createEntityManager());
         System.out.println("\n-----------------------------------------------\n");
-        Carro carro = getEm().find(Carro.class, 16L);
+        Carro carro = getEm().find(Carro.class, 1L);
         System.out.println(carro.getCodigo() + " - " + carro.getPlaca());
 
     }

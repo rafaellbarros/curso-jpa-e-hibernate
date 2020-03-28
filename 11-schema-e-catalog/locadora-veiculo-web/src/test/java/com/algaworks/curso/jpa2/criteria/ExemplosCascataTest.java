@@ -23,7 +23,7 @@ public class ExemplosCascataTest {
 
     @BeforeClass
     public static void init() {
-        factory = Persistence.createEntityManagerFactory("locadoraVeiculoPU");
+        factory = Persistence.createEntityManagerFactory("locadoraVeiculoTestPU");
     }
 
     @Before

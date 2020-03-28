@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,21 +25,14 @@ public class CarroDAOTest {
         helper.cleanAndInsert();
 
         dao = new CarroDAO();
-        em = JPAHelper.currentEntityManager();
-        dao.setEntityManger(em);
+        EntityManagerFactory factory = JPAHelper.entityManagerFactory("locadoraVeiculoTestPU");
+        dao.setEntityManger(factory.createEntityManager());
     }
 
     @Test
     public void deveBuscarCarroPeloCodigo() {
-        final Carro carro = dao.buscarPeloCodigo(99L);
-        assertEquals(99L, carro.getCodigo().longValue());
-        assertEquals("ZPT-2211", carro.getPlaca());
-    }
-
-    @After
-    public void tearDown() {
-        dao = null;
-        helper.clean();
-        em.close();
+        final Carro carro = dao.buscarPeloCodigo(1L);
+        assertEquals(1L, carro.getCodigo().longValue());
+        assertEquals("AAA-1111", carro.getPlaca());
     }
 }

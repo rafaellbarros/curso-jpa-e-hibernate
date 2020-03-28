@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.criteria;
 
 import com.algaworks.curso.jpa2.modelo.*;
+import com.jintegrity.helper.JPAHelper;
 import org.junit.*;
 
 import javax.persistence.*;
@@ -19,14 +20,14 @@ public class ExemplosCriteriaTest {
 
     @BeforeClass
     public static void init() {
-        factory = Persistence.createEntityManagerFactory("locadoraVeiculoPU");
+        factory = Persistence.createEntityManagerFactory("locadoraVeiculoTestPU");
     }
 
     @Before
     public void setUp() {
         em = factory.createEntityManager();
-        placaExpected = "AAA-1234";
-        valorDiariaExpected = new BigDecimal("200.00");
+        placaExpected = "AAA-1111";
+        valorDiariaExpected = new BigDecimal("450.00");
     }
 
     @After
@@ -46,7 +47,7 @@ public class ExemplosCriteriaTest {
         List<String> placas = query.getResultList();
         String placaAtual = placas.stream().findFirst().get();
 
-        // Assert.assertEquals(placaExpected, placaAtual);
+        Assert.assertEquals(placaExpected, placaAtual);
     }
 
     @Test
@@ -80,15 +81,15 @@ public class ExemplosCriteriaTest {
             System.out.println(valores[0] + " - " + valores[1]);
         }
 
-        String placaExptected = "AAA-1234";
-        BigDecimal valorDiariaExpected = new BigDecimal("200.00");
+        String placaExptected = "AAA-1111";
+        BigDecimal valorDiariaExpected = new BigDecimal("450.00");
 
         Object[] objects = resultado.stream().findFirst().get();
         String placaAtual = (String) objects[0];
         BigDecimal valorDiariaAtual = (BigDecimal) objects[1];
 
-        // Assert.assertEquals(placaExptected, placaAtual);
-        // Assert.assertEquals(valorDiariaExpected, valorDiariaAtual);
+        Assert.assertEquals(placaExptected, placaAtual);
+        Assert.assertEquals(valorDiariaExpected, valorDiariaAtual);
     }
 
     @Test
@@ -111,8 +112,8 @@ public class ExemplosCriteriaTest {
         String placaCarroAtual = (String) tuple.get("placaCarro");
         BigDecimal valorCarroAtual = (BigDecimal) tuple.get("valorCarro");
 
-        // Assert.assertEquals(placaExpected, placaCarroAtual);
-        // Assert.assertEquals(valorDiariaExpected, valorCarroAtual);
+        Assert.assertEquals(placaExpected, placaCarroAtual);
+        Assert.assertEquals(valorDiariaExpected, valorCarroAtual);
     }
 
     @Test
@@ -131,7 +132,7 @@ public class ExemplosCriteriaTest {
             System.out.println(precoCarro.getPlaca() + " - " + precoCarro.getValor());
         }
 
-        PrecoCarro precoCarro = resultado.stream().findFirst().get();
+        // PrecoCarro precoCarro = resultado.stream().findFirst().get();
 
         // Assert.assertEquals(placaExpected, precoCarro.getPlaca());
         // Assert.assertEquals(valorDiariaExpected, precoCarro.getValor());
@@ -156,13 +157,13 @@ public class ExemplosCriteriaTest {
             System.out.println(c.getPlaca() + " - " + c.getCor());
         }
 
-        String placa = "BBB-2222";
+        String placa = "AAA-1111";
         String cor = "Prata";
 
         Carro c = carros.stream().findFirst().get();
 
-        // Assert.assertEquals(placa, c.getPlaca());
-        // Assert.assertEquals(cor, c.getCor());
+        Assert.assertEquals(placa, c.getPlaca());
+        Assert.assertEquals(cor, c.getCor());
 
     }
     
