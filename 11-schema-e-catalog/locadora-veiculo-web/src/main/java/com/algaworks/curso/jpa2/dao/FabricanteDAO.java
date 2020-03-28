@@ -34,4 +34,8 @@ public class FabricanteDAO implements Serializable {
 	public Fabricante buscarPeloCodigo(Long codigo) {
 		return em.find(Fabricante.class, codigo);
 	}
+
+	public void setEntityManger(EntityManager entityManger) {
+		this.em = entityManger;
+	}
 }
