@@ -194,6 +194,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Implementação do Bean Validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.1.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<!-- Repositorio PrimeFaces -->
